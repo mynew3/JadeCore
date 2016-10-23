@@ -1,6 +1,5 @@
 /*
- * Copyright (C) 2008-2016 TrinityCore <http://www.trinitycore.org/>
- * Copyright (C) 2005-2009 MaNGOS <http://getmangos.com/>
+ * Copyright (C) 2013-2016 JadeCore <https://www.jadecore.tk/>
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -139,7 +138,7 @@ void BattlegroundAB::PostUpdateImpl(uint32 diff)
 
                 if (m_ReputationScoreTics[team] >= m_ReputationTics)
                 {
-                    (team == TEAM_ALLIANCE) ? RewardReputationToTeam(509, 10, ALLIANCE) : RewardReputationToTeam(510, 10, HORDE);
+                    RewardReputationToTeam(509, 510, 10, team == ALLIANCE ? ALLIANCE : HORDE);
                     m_ReputationScoreTics[team] -= m_ReputationTics;
                 }
 

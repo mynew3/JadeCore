@@ -1,6 +1,5 @@
 /*
- * Copyright (C) 2008-2016 TrinityCore <http://www.trinitycore.org/>
- * Copyright (C) 2005-2009 MaNGOS <http://getmangos.com/>
+ * Copyright (C) 2013-2016 JadeCore <https://www.jadecore.tk/>
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -42,6 +41,7 @@ struct GroupQueueInfo                                       // stores informatio
 {
     std::map<ObjectGuid, PlayerQueueInfo*> Players;         // player queue info map
     uint32  Team;                                           // Player team (ALLIANCE/HORDE)
+    uint32  CFSTeam;
     BattlegroundTypeId BgTypeId;                            // battleground type id
     bool    IsRated;                                        // rated
     uint8   ArenaType;                                      // 2v2, 3v3, 5v5 or 0 when BG
@@ -60,9 +60,10 @@ enum BattlegroundQueueGroupTypes
     BG_QUEUE_PREMADE_ALLIANCE   = 0,
     BG_QUEUE_PREMADE_HORDE      = 1,
     BG_QUEUE_NORMAL_ALLIANCE    = 2,
-    BG_QUEUE_NORMAL_HORDE       = 3
+    BG_QUEUE_NORMAL_HORDE = 3,
+    BG_QUEUE_CROSSFACTION = 4
 };
-#define BG_QUEUE_GROUP_TYPES_COUNT 4
+#define BG_QUEUE_GROUP_TYPES_COUNT 5
 
 enum BattlegroundQueueInvitationType
 {
@@ -80,6 +81,11 @@ class TC_GAME_API BattlegroundQueue
 
         void BattlegroundQueueUpdate(uint32 diff, BattlegroundTypeId bgTypeId, BattlegroundBracketId bracket_id, uint8 arenaType = 0, bool isRated = false, uint32 minRating = 0);
         void UpdateEvents(uint32 diff);
+
+        bool FillXPlayersToBG(BattlegroundBracketId bracket_id, Battleground* bg, bool start = false);
+        typedef std::multimap<int32, GroupQueueInfo*> QueuedGroupMap;
+        int32 PreAddPlayers(QueuedGroupMap m_PreGroupMap, int32 MaxAdd, uint32 MaxInTeam);
+        bool CheckCrossFactionMatch(BattlegroundBracketId bracket_id, Battleground* bg);
 
         void FillPlayersToBG(Battleground* bg, BattlegroundBracketId bracket_id);
         bool CheckPremadeMatch(BattlegroundBracketId bracket_id, uint32 MinPlayersPerTeam, uint32 MaxPlayersPerTeam);

@@ -1,6 +1,5 @@
 /*
- * Copyright (C) 2008-2016 TrinityCore <http://www.trinitycore.org/>
- * Copyright (C) 2005-2009 MaNGOS <http://getmangos.com/>
+ * Copyright (C) 2013-2016 JadeCore <https://www.jadecore.tk/>
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -61,6 +60,19 @@ void WorldSession::HandleMessagechatOpcode(WorldPacket& recvData)
         SendNotification(LANG_UNKNOWN_LANGUAGE);
         recvData.rfinish();
         return;
+    }
+
+    if (sWorld->getBoolConfig(CROSSFACTION_SYSTEM_BATTLEGROUNDS) && lang != LANG_ADDON)
+    {
+        switch (type)
+        {
+            case CHAT_MSG_BATTLEGROUND:
+            case CHAT_MSG_BATTLEGROUND_LEADER:
+            case CHAT_MSG_YELL:
+                lang = LANG_UNIVERSAL;
+            default:
+                break;
+        }
     }
 
     Player* sender = GetPlayer();
@@ -250,6 +262,10 @@ void WorldSession::HandleMessagechatOpcode(WorldPacket& recvData)
                 SendNotification(GetTrinityString(LANG_SAY_REQ), sWorld->getIntConfig(CONFIG_CHAT_SAY_LEVEL_REQ));
                 return;
             }
+ 
+            if (!GetPlayer()->IsGameMaster())
+                 if (GetPlayer()->SendBattleGroundChat(type, msg))
+                 return;
 
             sender->Say(msg, Language(lang));
             break;
@@ -294,7 +310,7 @@ void WorldSession::HandleMessagechatOpcode(WorldPacket& recvData)
 
             Player* receiver = ObjectAccessor::FindConnectedPlayerByName(to);
             if (!receiver || (lang != LANG_ADDON && !receiver->isAcceptWhispers() && receiver->GetSession()->HasPermission(rbac::RBAC_PERM_CAN_FILTER_WHISPERS) && !receiver->IsInWhisperWhiteList(sender->GetGUID())))
-             {
+            {
                 if (sWorld->getBoolConfig(CONFIG_FAKE_PLAYERS_ENABLE))
                 {
                     QueryResult result = CharacterDatabase.PQuery("SELECT guid FROM characters WHERE name = '%s' AND online > 1", to.c_str());

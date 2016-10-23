@@ -1,6 +1,5 @@
 /*
- * Copyright (C) 2008-2016 TrinityCore <http://www.trinitycore.org/>
- * Copyright (C) 2005-2009 MaNGOS <http://getmangos.com/>
+ * Copyright (C) 2013-2016 JadeCore <https://www.jadecore.tk/>
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -44,11 +43,11 @@ enum LevelLimit
 
     // client supported max level for player/pets/etc. Avoid overflow or client stability affected.
     // also see GT_MAX_LEVEL define
-    MAX_LEVEL = 100,
+    MAX_LEVEL = 80,
 
     // Server side limitation. Base at used code requirements.
     // also see MAX_LEVEL and GT_MAX_LEVEL define
-    STRONG_MAX_LEVEL = 255,
+    STRONG_MAX_LEVEL = 80,
 };
 
 enum BattlegroundBracketId                                  // bracketId for level ranges

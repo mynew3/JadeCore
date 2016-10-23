@@ -1,6 +1,5 @@
 /*
- * Copyright (C) 2008-2016 TrinityCore <http://www.trinitycore.org/>
- * Copyright (C) 2005-2009 MaNGOS <http://getmangos.com/>
+ * Copyright (C) 2013-2016 JadeCore <https://www.jadecore.tk/>
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -1000,6 +999,9 @@ void WorldSession::HandlePlayerLogin(LoginQueryHolder* holder)
     TC_METRIC_EVENT("player_events", "Login", pCurrChar->GetName());
 
     delete holder;
+
+    if (pCurrChar->GetTeam() != pCurrChar->GetCFSTeam())
+        pCurrChar->FitPlayerInTeam(pCurrChar->GetBattleground() && !pCurrChar->GetBattleground()->isArena() ? true : false, pCurrChar->GetBattleground());
 }
 
 void WorldSession::HandleSetFactionAtWar(WorldPacket& recvData)

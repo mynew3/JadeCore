@@ -36,6 +36,11 @@
 #    PACKET SPOOF PROTECTION SETTINGS
 #    METRIC SETTINGS
 #    SYSTEM FAKE PLAYERS
+#    SYSTEM V.I.P
+# 	 SYSTEM ANTI-HACKER
+#    CROSSFACTION BG
+#    DOUBLE XP WEEKEND
+#    SYSTEM AUTO QUEST COMPLETE
 #
 ###################################################################################################
 
@@ -347,7 +352,7 @@ PlayerSaveInterval = 90000
 #        Default:     0  - (Disabled, Do not save character stats)
 #                     1+ - (Enabled, Level beyond which character stats are saved)
 
-PlayerSave.Stats.MinLevel = 0
+PlayerSave.Stats.MinLevel = 1
 
 #
 #    PlayerSave.Stats.SaveOnlyOnLogout
@@ -370,7 +375,7 @@ DisconnectToleranceInterval = 0
 #        Default:     0 - (Disabled)
 #                     1 - (Enabled)
 
-mmap.enablePathFinding = 0
+mmap.enablePathFinding = 1
 
 #
 #    vmap.enableLOS
@@ -1246,7 +1251,7 @@ BirthdayTime = 1222964635
 #                     4  - (Enable world only)
 #                     0  - (All disabled)
 
-Updates.EnableDatabases = 7
+Updates.EnableDatabases = 0
 
 #
 #    Updates.AutoSetup
@@ -1254,7 +1259,7 @@ Updates.EnableDatabases = 7
 #        Default:     1 - (Enabled)
 #                     0 - (Disabled)
 
-Updates.AutoSetup   = 1
+Updates.AutoSetup   = 0
 
 #
 #    Updates.Redundancy
@@ -1263,7 +1268,7 @@ Updates.AutoSetup   = 1
 #        Default:     1 - (Enabled)
 #                     0 - (Disabled)
 
-Updates.Redundancy  = 1
+Updates.Redundancy  = 0
 
 #
 #    Updates.ArchivedRedundancy
@@ -1280,7 +1285,7 @@ Updates.ArchivedRedundancy = 0
 #        Default:     1 - (Enabled)
 #                     0 - (Disabled)
 
-Updates.AllowRehash = 1
+Updates.AllowRehash = 0
 
 #
 #    Updates.CleanDeadRefMaxCount
@@ -1292,7 +1297,7 @@ Updates.AllowRehash = 1
 #                     0 - (Disabled)
 #                    -1 - (Enabled - unlimited)
 
-Updates.CleanDeadRefMaxCount = 3
+Updates.CleanDeadRefMaxCount = 0
 
 #
 ###################################################################################################
@@ -2331,7 +2336,7 @@ Stats.Limits.Crit  = 95.0
 #        Default:     0 - (Disabled)
 #                     1 - (Enabled)
 
-AutoBroadcast.On = 0
+AutoBroadcast.On = 1
 
 #
 #    AutoBroadcast.Center
@@ -2368,7 +2373,7 @@ Battleground.CastDeserter = 1
 #        Default:     0 - (Disabled)
 #                     1 - (Enabled)
 
-Battleground.QueueAnnouncer.Enable = 0
+Battleground.QueueAnnouncer.Enable = 1
 
 #
 #    Battleground.QueueAnnouncer.PlayerOnly
@@ -2384,7 +2389,7 @@ Battleground.QueueAnnouncer.PlayerOnly = 0
 #        Default:     0 - (Disabled)
 #                     1 - (Enabled)
 
-Battleground.StoreStatistics.Enable = 0
+Battleground.StoreStatistics.Enable = 1
 
 #
 #    Battleground.TrackDeserters.Enable
@@ -2430,7 +2435,7 @@ Battleground.PremadeGroupWaitForMatch = 1800000
 #        Default:     0 - (Disabled)
 #                     1 - (Enabled)
 
-Battleground.GiveXPForKills = 0
+Battleground.GiveXPForKills = 1
 
 #
 #    Battleground.Random.ResetHour
@@ -2482,7 +2487,7 @@ Battleground.ReportAFK = 3
 #         Default:     0 - (Disabled)
 #                      1 - (Enabled, Experimental as in incomplete, bugged and with crashes)
 
-Wintergrasp.Enable = 0
+Wintergrasp.Enable = 1
 
 #
 #     Wintergrasp.PlayerMax
@@ -2562,7 +2567,7 @@ Arena.RatedUpdateTimer = 5000
 #        Default:     0 - (Disabled)
 #                     1 - (Enabled)
 
-Arena.AutoDistributePoints = 0
+Arena.AutoDistributePoints = 1
 
 #
 #    Arena.AutoDistributeInterval
@@ -2578,7 +2583,7 @@ Arena.AutoDistributeInterval = 7
 #        Default:     0 - (Disabled)
 #                     1 - (Enabled)
 
-Arena.QueueAnnouncer.Enable = 0
+Arena.QueueAnnouncer.Enable = 1
 
 #
 #    Arena.ArenaSeason.ID
@@ -2600,14 +2605,14 @@ Arena.ArenaSeason.InProgress = 1
 #        Description: Start rating for new arena teams.
 #        Default:     0
 
-Arena.ArenaStartRating = 0
+Arena.ArenaStartRating = 1500
 
 #
 #    Arena.ArenaStartPersonalRating
 #        Description: Start personal rating when joining a team.
 #        Default:     0
 
-Arena.ArenaStartPersonalRating = 0
+Arena.ArenaStartPersonalRating = 1500
 
 #
 #    Arena.ArenaStartMatchmakerRating
@@ -2742,7 +2747,7 @@ Ra.MinLevel = 3
 #        Default:     0 - (Disabled)
 #                     1 - (Enabled)
 
-SOAP.Enabled = 0
+SOAP.Enabled = 1
 
 #
 #    SOAP.IP
@@ -2857,14 +2862,14 @@ HonorPointsAfterDuel = 0
 #        Default:     0  - (Disabled)
 #                     1  - (Enabled)
 
-ResetDuelCooldowns = 0
+ResetDuelCooldowns = 1
 
 #    ResetDuelHealthMana
 #        Description: Reset health and mana before duel starts and restore them when duel ends.
 #        Default:     0  - (Disabled)
 #                     1  - (Enabled)
 
-ResetDuelHealthMana = 0
+ResetDuelHealthMana = 1
 
 #
 #    AlwaysMaxWeaponSkill
@@ -2882,7 +2887,7 @@ AlwaysMaxWeaponSkill = 0
 #        Default:     0 - (Disabled)
 #                     1 - (Enabled)
 
-PvPToken.Enable = 0
+PvPToken.Enable = 1
 
 #
 #    PvPToken.MapAllowType
@@ -2892,7 +2897,7 @@ PvPToken.Enable = 0
 #                     2 - (FFA areas only like Gurubashi arena)
 #                     1 - (Battlegrounds and FFA areas)
 
-PvPToken.MapAllowType = 4
+PvPToken.MapAllowType = 3
 
 #
 #    PvPToken.ItemID
@@ -2933,7 +2938,7 @@ Guild.AllowMultipleGuildMaster = 0
 #        Default:     0 - (Disabled)
 #                     1 - (Enabled)
 
-ShowKickInWorld = 0
+ShowKickInWorld = 1
 
 #     ShowMuteInWorld
 #        Description: Determines whether a message is broadcasted to the entire server when a
@@ -2941,7 +2946,7 @@ ShowKickInWorld = 0
 #        Default:     0 - (Disabled)
 #                     1 - (Enabled)
 
-ShowMuteInWorld = 0
+ShowMuteInWorld = 1
 
 #
 #     ShowBanInWorld
@@ -3619,7 +3624,7 @@ AuctionHouseBot.Buyer.Recheck.Interval = 20
 
 Appender.Console=1,3,0
 Appender.Server=2,2,0,Server.log,w
-Appender.GM=2,2,15,gm/gm_%s.log
+Appender.GM=2,2,1,GM.log
 Appender.DBErrors=2,2,0,DBErrors.log
 
 #  Logger config values: Given a logger "name"
@@ -3786,12 +3791,118 @@ Metric.ConnectionInfo = "127.0.0.1;8086;worldserver"
 Metric.OverallStatusInterval = 1
 
 #
+#
 ###################################################################################################
-#################################### SYSTEM FAKE PLAYERS###########################################
+######################################SYSTEM FAKE PLAYERS##########################################
 ###################################################################################################
 #
 
 FakePlayers.Enable = 1
+
+#
+###################################################################################################
+#
+###################################################################################################
+######################################SYSTEM V.I.P#################################################
+###################################################################################################
+#
+
+Vip.Rate.XP.Kill     = 2
+Vip.Rate.XP.Quest    = 2
+Vip.Rate.XP.Explore  = 2
+Vip.Rate.Honor       = 2
+Vip.Rate.Reputation  = 2
+Vip.Rate.Skill       = 2
+Vip.Rate.Crafting    = 2
+Vip.Rate.Gathering   = 2
+
+#
+###################################################################################################
+######################################SYSTEM ANTI-HACKER###########################################
+###################################################################################################
+# 
+#
+#    Anticheat.Enable
+#        Description: Enable/Disable.
+#        Default:     0 - Disable
+#                     1 - Enable
+#
+#    Anticheat.Action
+#        Description: Type of action in the detection.
+#        Default:     0 - Global announce for gm.
+#                     1 - Freeze player and Teleport Official Jail
+#                     2 - Kick player
+#					  3 - Suicide player
+#					  4 - Stum and Sleep Player
+#
+#    Anticheat.MaxReports
+#        Description: Maximum of reports to set action.
+#        Default:     10
+#
+#    Anticheat.RefreshTime
+#        Description: Time in milliseconds to refresh the player warnings.
+#        Default:     5000
+#
+#    Anticheat.AverageSpeed
+#        Description: Depends on your "Rate.MoveSpeed" config.
+#        Default:     1000
+#
+#    Anticheat.IgnoreLatency
+#        Description: Ignores players with latency above the value.
+#        Default:     1000
+#
+#    Anticheat.IgnoreAccountRank
+#        Description: Ignores accounts with rank above the value.
+#        Default:     0
+#
+
+Anticheat.Enable            = 1
+Anticheat.Action            = 2
+Anticheat.MaxReports        = 5
+Anticheat.RefreshTime       = 5000
+Anticheat.AverageSpeed      = 1000
+Anticheat.IgnoreLatency     = 1000
+Anticheat.IgnoreAccountRank = 2
+
+#
+###################################################################################################
+######################################CROSSFACTION BG##############################################
+###################################################################################################
+# 
+#
+#    CrossfactionBG.enable = 1 - Mixed battleground enabled.
+#    CrossfactionBG.enable = 0 - Mixed battleground disabled.
+
+CrossfactionBG.enable = 1
+
+#
+###################################################################################################
+######################################DOUBLE XP WEEKEND############################################
+###################################################################################################
+# 
+#
+# Enables or disables the Double XP Weekend Script
+#
+#    DoubleXP.Enable
+#        Default:     1 (enabled)
+#                     0 (disabled)
+
+DoubleXP.Enable = 1
+
+#
+###################################################################################################
+##############################SYSTEM AUTO QUEST COMPLETE###########################################
+###################################################################################################
+#
+#
+#     Custom.AutoCompleteQuestDelay
+#         Set it to a number to enable the summon of the quest giver of the quest you just completed.
+#	      The number indicates the duration of the summoning.
+#     Default : 0 (AutoComplete Disable)
+#     Example : 900 (When a quest is completed, the quest giver will be summoned for 15 minutes)
+#
+
+Custom.AutoCompleteQuestDelay = 900
 
 #
 ###################################################################################################

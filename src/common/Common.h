@@ -1,8 +1,5 @@
 /*
  * Copyright (C) 2013-2016 JadeCore <https://www.jadecore.tk/>
- * Copyright (C) 2008-2016 TrinityCore <http://www.trinitycore.org/>
- * Copyright (C) 2005-2009 MaNGOS <http://getmangos.com/>
- * Copyright (C) 2006-2009 ScriptDev2 <https://scriptdev2.svn.sourceforge.net/>
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -109,10 +106,11 @@ enum TimeConstants
 enum AccountTypes
 {
     SEC_PLAYER         = 0,
-    SEC_MODERATOR      = 1,
-    SEC_GAMEMASTER     = 2,
-    SEC_ADMINISTRATOR  = 3,
-    SEC_CONSOLE        = 4                                  // must be always last in list, accounts must have less security level always also
+    SEC_VIP            = 1,
+    SEC_MODERATOR      = 2,
+    SEC_GAMEMASTER     = 3,
+    SEC_ADMINISTRATOR  = 4,
+    SEC_CONSOLE        = 5                                  // must be always last in list, accounts must have less security level always also
 };
 
 enum LocaleConstant

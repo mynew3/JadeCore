@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2016-2016 TrinityCore <http://www.trinitycore.org/>
+ * Copyright (C) 2016-2016 JadeCore <http://www.noffearrdeathproject.net/>
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -29,7 +29,7 @@ class TC_GAME_API PlayerAI : public UnitAI
         explicit PlayerAI(Player* player) : UnitAI(static_cast<Unit*>(player)), me(player), _selfSpec(PlayerAI::GetPlayerSpec(player)), _isSelfHealer(PlayerAI::IsPlayerHealer(player)), _isSelfRangedAttacker(PlayerAI::IsPlayerRangedAttacker(player)) { }
 
         void OnCharmed(bool /*apply*/) override { } // charm AI application for players is handled by Unit::SetCharmedBy / Unit::RemoveCharmedBy
-
+ 
         Creature* GetCharmer() const
         {
             if (ObjectGuid charmerGUID = me->GetCharmerGUID())
@@ -37,6 +37,7 @@ class TC_GAME_API PlayerAI : public UnitAI
                     return ObjectAccessor::GetCreature(*me, charmerGUID);
             return nullptr;
         }
+		
         // helper functions to determine player info
         // Return values range from 0 (left-most spec) to 2 (right-most spec). If two specs have the same number of talent points, the left-most of those specs is returned.
         static uint8 GetPlayerSpec(Player const* who);

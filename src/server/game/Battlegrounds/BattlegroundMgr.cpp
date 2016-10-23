@@ -1,6 +1,5 @@
 /*
- * Copyright (C) 2008-2016 TrinityCore <http://www.trinitycore.org/>
- * Copyright (C) 2005-2009 MaNGOS <http://getmangos.com/>
+ * Copyright (C) 2013-2016 JadeCore <https://www.jadecore.tk/>
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -705,7 +704,7 @@ void BattlegroundMgr::SendToBattleground(Player* player, uint32 instanceId, Batt
     if (Battleground* bg = GetBattleground(instanceId, bgTypeId))
     {
         uint32 mapid = bg->GetMapId();
-        uint32 team = player->GetBGTeam();
+        uint32 team = player->GetTeam();
         if (team == 0)
             team = player->GetTeam();
 
@@ -1035,4 +1034,3 @@ void BattlegroundMgr::RemoveBattleground(BattlegroundTypeId bgTypeId, uint32 ins
 {
     bgDataStore[bgTypeId].m_Battlegrounds.erase(instanceId);
 }
-

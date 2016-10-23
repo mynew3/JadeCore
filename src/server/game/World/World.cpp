@@ -1,6 +1,5 @@
 /*
- * Copyright (C) 2008-2016 TrinityCore <http://www.trinitycore.org/>
- * Copyright (C) 2005-2009 MaNGOS <http://getmangos.com/>
+ * Copyright (C) 2013-2016 JadeCore <https://www.jadecore.tk/>
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -68,6 +67,7 @@
 #include "WeatherMgr.h"
 #include "WorldSession.h"
 #include "M2Stores.h"
+#include "../../scripts/Custom/npc_auto_team.h"
 
 TC_GAME_API std::atomic<bool> World::m_stopEvent(false);
 TC_GAME_API uint8 World::m_ExitCode = SHUTDOWN_EXIT_CODE;
@@ -596,8 +596,8 @@ void World::LoadConfigSettings(bool reload)
     m_int_configs[CONFIG_CHAT_CHANNEL_LEVEL_REQ] = sConfigMgr->GetIntDefault("ChatLevelReq.Channel", 1);
     m_int_configs[CONFIG_CHAT_WHISPER_LEVEL_REQ] = sConfigMgr->GetIntDefault("ChatLevelReq.Whisper", 1);
     m_int_configs[CONFIG_CHAT_EMOTE_LEVEL_REQ] = sConfigMgr->GetIntDefault("ChatLevelReq.Emote", 1);
-    m_int_configs[CONFIG_CHAT_SAY_LEVEL_REQ] = sConfigMgr->GetIntDefault("ChatLevelReq.Say", 1);
     m_int_configs[CONFIG_CHAT_YELL_LEVEL_REQ] = sConfigMgr->GetIntDefault("ChatLevelReq.Yell", 1);
+    m_int_configs[CONFIG_CHAT_SAY_LEVEL_REQ] = sConfigMgr->GetIntDefault("ChatLevelReq.Say", 1);
     m_int_configs[CONFIG_PARTY_LEVEL_REQ] = sConfigMgr->GetIntDefault("PartyLevelReq", 1);
     m_int_configs[CONFIG_TRADE_LEVEL_REQ] = sConfigMgr->GetIntDefault("LevelReq.Trade", 1);
     m_int_configs[CONFIG_TICKET_LEVEL_REQ] = sConfigMgr->GetIntDefault("LevelReq.Ticket", 1);
@@ -1098,6 +1098,8 @@ void World::LoadConfigSettings(bool reload)
 
     m_bool_configs[CONFIG_OFFHAND_CHECK_AT_SPELL_UNLEARN]            = sConfigMgr->GetBoolDefault("OffhandCheckAtSpellUnlearn", true);
 
+    m_bool_configs[CROSSFACTION_SYSTEM_BATTLEGROUNDS] = sConfigMgr->GetBoolDefault("CrossfactionBG.enable", true);
+
     m_int_configs[CONFIG_CREATURE_PICKPOCKET_REFILL] = sConfigMgr->GetIntDefault("Creature.PickPocketRefillDelay", 10 * MINUTE);
     m_int_configs[CONFIG_CREATURE_STOP_FOR_PLAYER] = sConfigMgr->GetIntDefault("Creature.MovingStopTimeForPlayer", 3 * MINUTE * IN_MILLISECONDS);
 
@@ -1348,6 +1350,25 @@ void World::LoadConfigSettings(bool reload)
  
     m_bool_configs[CONFIG_FAKE_PLAYERS_ENABLE] = sConfigMgr->GetBoolDefault("FakePlayers.Enable", false);
  
+    rate_values[VIP_RATE_XP_KILL] = sConfigMgr->GetFloatDefault("Vip.Rate.XP.Kill", 1.0f);
+    rate_values[VIP_RATE_XP_QUEST] = sConfigMgr->GetFloatDefault("Vip.Rate.XP.Quest", 1.0f);
+    rate_values[VIP_RATE_XP_EXPLORE] = sConfigMgr->GetFloatDefault("Vip.Rate.XP.Explore", 1.0f);
+    rate_values[VIP_RATE_HONOR] = sConfigMgr->GetFloatDefault("Vip.Rate.Honor", 1.0f);
+    rate_values[VIP_RATE_REPUTATION] = sConfigMgr->GetFloatDefault("Vip.Rate.Reputation", 1.0f);
+    rate_values[VIP_RATE_SKILL] = sConfigMgr->GetFloatDefault("Vip.Rate.Skill", 1.0f);
+    rate_values[VIP_RATE_CRAFTING] = sConfigMgr->GetFloatDefault("Vip.Rate.Crafting", 1.0f);
+    rate_values[VIP_RATE_GATHERING] = sConfigMgr->GetFloatDefault("Vip.Rate.Gathering", 1.0f);
+ 
+    m_bool_configs[CONFIG_ANTICHEAT_ENABLE] = sConfigMgr->GetBoolDefault("Anticheat.Enable", false);
+    m_int_configs[CONFIG_ANTICHEAT_ACTION] = sConfigMgr->GetIntDefault("Anticheat.Action", 0);
+    m_int_configs[CONFIG_ANTICHEAT_MAX_REPORTS] = sConfigMgr->GetIntDefault("Anticheat.MaxReports", 10);
+    m_int_configs[CONFIG_ANTICHEAT_REFRESH_TIME] = sConfigMgr->GetIntDefault("Anticheat.RefreshTime", 5000);
+    m_int_configs[CONFIG_ANTICHEAT_AVERAGE_SPEED] = sConfigMgr->GetIntDefault("Anticheat.AverageSpeed", 1000);
+    m_int_configs[CONFIG_ANTICHEAT_IGNORE_LATENCY] = sConfigMgr->GetIntDefault("Anticheat.IgnoreLatency", 1000);
+    m_int_configs[CONFIG_ANTICHEAT_IGNORE_ACCOUNT_RANK] = sConfigMgr->GetIntDefault("Anticheat.IgnoreAccountRank", 0);
+	
+	m_int_configs[CONFIG_QUEST_AUTOCOMPLETE_DELAY] = sConfigMgr->GetIntDefault("Custom.AutoCompleteQuestDelay", 0);
+
     // prevent character rename on character customization
     m_bool_configs[CONFIG_PREVENT_RENAME_CUSTOMIZATION] = sConfigMgr->GetBoolDefault("PreventRenameCharacterOnCustomization", false);
 
@@ -1450,10 +1471,10 @@ void World::SetInitialWorldSettings()
 
     TC_LOG_INFO("server.loading", "Loading SpellInfo custom attributes...");
     sSpellMgr->LoadSpellInfoCustomAttributes();
-
+ 
     TC_LOG_INFO("server.loading", "Loading SpellInfo SpellSpecific and AuraState...");
     sSpellMgr->LoadSpellInfoSpellSpecificAndAuraState();
-
+ 
     TC_LOG_INFO("server.loading", "Loading SpellInfo diminishing infos...");
     sSpellMgr->LoadSpellInfoDiminishing();
 
@@ -1899,7 +1920,7 @@ void World::SetInitialWorldSettings()
 
     // Delete all custom channels which haven't been used for PreserveCustomChannelDuration days.
     Channel::CleanOldChannelsInDB();
-
+ 
     TC_LOG_INFO("server.loading", "Initializing Opcodes...");
     opcodeTable.Initialize();
 
@@ -1963,6 +1984,25 @@ void World::SetInitialWorldSettings()
             }
         });
     }
+ 
+    TC_LOG_INFO("server.loading", "Loading Template Talents...");
+    sTemplateNpcMgr->LoadTalentsContainer();
+
+    // Load templates for Template NPC #2
+    TC_LOG_INFO("server.loading", "Loading Template Glyphs...");
+    sTemplateNpcMgr->LoadGlyphsContainer();
+
+    // Load templates for Template NPC #3
+    TC_LOG_INFO("server.loading", "Loading Template Gear for Humans...");
+    sTemplateNpcMgr->LoadHumanGearContainer();
+
+    // Load templates for Template NPC #4
+    TC_LOG_INFO("server.loading", "Loading Template Gear for Alliances...");
+    sTemplateNpcMgr->LoadAllianceGearContainer();
+
+    // Load templates for Template NPC #5
+    TC_LOG_INFO("server.loading", "Loading Template Gear for Hordes...");
+    sTemplateNpcMgr->LoadHordeGearContainer();
 
     uint32 startupDuration = GetMSTimeDiffToNow(startupBegin);
 
@@ -2104,6 +2144,8 @@ void World::Update(uint32 diff)
 
     ///- Update the game time and check for shutdown time
     _UpdateGameTime();
+ 
+    LoginDatabase.PQuery("DELETE FROM account_access WHERE gmlevel = '1' AND vipTime < UNIX_TIMESTAMP()");
 
     /// Handle daily quests reset time
     if (m_gameTime > m_NextDailyQuestReset)

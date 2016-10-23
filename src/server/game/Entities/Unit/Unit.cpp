@@ -1,6 +1,5 @@
 /*
- * Copyright (C) 2008-2016 TrinityCore <http://www.trinitycore.org/>
- * Copyright (C) 2005-2009 MaNGOS <http://getmangos.com/>
+ * Copyright (C) 2013-2016 JadeCore <https://www.jadecore.tk/>
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -9780,7 +9779,7 @@ void Unit::IncrDiminishing(SpellInfo const* auraSpellInfo, bool triggered)
     DiminishingGroup const group = auraSpellInfo->GetDiminishingReturnsGroupForSpell(triggered);
     DiminishingLevels const maxLevel = auraSpellInfo->GetDiminishingReturnsMaxLevel(triggered);
 
-    // Checking for existing in the table
+     // Checking for existing in the table
     DiminishingReturn& diminish = m_Diminishing[group];
     if (static_cast<int32>(diminish.hitCount) < maxLevel)
         ++diminish.hitCount;
@@ -9791,8 +9790,6 @@ float Unit::ApplyDiminishingToDuration(SpellInfo const* auraSpellInfo, bool trig
     DiminishingGroup const group = auraSpellInfo->GetDiminishingReturnsGroupForSpell(triggered);
     if (duration == -1 || group == DIMINISHING_NONE)
         return 1.0f;
-
-    int32 const limitDuration = auraSpellInfo->GetDiminishingReturnsLimitDuration(triggered);
 
     // test pet/charm masters instead pets/charmeds
     Unit const* targetOwner = GetCharmerOrOwner();
@@ -9865,7 +9862,7 @@ void Unit::ApplyDiminishingAura(DiminishingGroup group, bool apply)
             diminish.hitTime = getMSTime();
     }
 }
-
+ 
 void Unit::ClearDiminishings()
 {
     for (uint32 i = 0; i < DIMINISHING_MAX; ++i)
@@ -13141,6 +13138,21 @@ uint32 Unit::GetModelForTotem(PlayerTotemType totemType)
                     return 19075;
                 case SUMMON_TYPE_TOTEM_AIR:     // air
                     return 19071;
+            }
+            break;
+        }
+        default: // One standard for other races.
+        {
+            switch (totemType)
+            {
+                case SUMMON_TYPE_TOTEM_FIRE:    // fire
+                    return 4589;
+                case SUMMON_TYPE_TOTEM_EARTH:   // earth
+                    return 4588;
+                case SUMMON_TYPE_TOTEM_WATER:   // water
+                    return 4587;
+                case SUMMON_TYPE_TOTEM_AIR:     // air
+                    return 4590;
             }
             break;
         }

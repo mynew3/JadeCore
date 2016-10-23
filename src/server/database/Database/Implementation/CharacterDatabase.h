@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2008-2016 TrinityCore <http://www.trinitycore.org/>
+ * Copyright (C) 2013-2016 JadeCore <https://www.jadecore.tk/>
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -473,7 +473,7 @@ enum CharacterDatabaseStatements
     CHAR_DEL_CHAR_ACTION_EXCEPT_SPEC,
     CHAR_INS_CHAR_FISHINGSTEPS,
     CHAR_DEL_CHAR_FISHINGSTEPS,
-
+ 
     CHAR_REP_CALENDAR_EVENT,
     CHAR_DEL_CALENDAR_EVENT,
     CHAR_REP_CALENDAR_INVITE,

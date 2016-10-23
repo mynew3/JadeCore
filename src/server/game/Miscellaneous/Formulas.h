@@ -1,6 +1,5 @@
 /*
- * Copyright (C) 2008-2016 TrinityCore <http://www.trinitycore.org/>
- * Copyright (C) 2005-2009 MaNGOS <http://getmangos.com/>
+ * Copyright (C) 2013-2016 JadeCore <https://www.jadecore.tk/>
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -23,6 +22,8 @@
 #include "SharedDefines.h"
 #include "ScriptMgr.h"
 #include "Player.h"
+#include "WorldSession.h"
+#include "VipSystem.h"
 
 namespace Trinity
 {
@@ -189,6 +190,8 @@ namespace Trinity
                     xpMod *= 1.0f - 2.0f*creature->m_PlayerDamageReq / creature->GetMaxHealth();
 
                 gain = uint32(gain * xpMod);
+
+                sVipSystem->VipFill(player->GetSession()->GetSecurity(), TYPE_RATE_XP_KILL, gain);
             }
 
             sScriptMgr->OnGainCalculation(gain, player, u);

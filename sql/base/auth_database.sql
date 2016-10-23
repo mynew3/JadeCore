@@ -437,7 +437,7 @@ DROP TABLE IF EXISTS `realmlist`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `realmlist` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(32) NOT NULL DEFAULT 'JadeCore 3.3.5',
+  `name` varchar(32) NOT NULL DEFAULT 'JadeCore',
   `address` varchar(255) NOT NULL DEFAULT '127.0.0.1',
   `localAddress` varchar(255) NOT NULL DEFAULT '127.0.0.1',
   `localSubnetMask` varchar(255) NOT NULL DEFAULT '255.255.255.0',
@@ -459,7 +459,7 @@ CREATE TABLE `realmlist` (
 
 LOCK TABLES `realmlist` WRITE;
 /*!40000 ALTER TABLE `realmlist` DISABLE KEYS */;
-INSERT INTO `realmlist` VALUES (1,'JadeCore 3.3.5','127.0.0.1','127.0.0.1','255.255.255.0',8085,0,0,1,0,0,12340);
+INSERT INTO `realmlist` VALUES (1,'JadeCore','127.0.0.1','127.0.0.1','255.255.255.0',8085,0,0,1,0,0,12340);
 /*!40000 ALTER TABLE `realmlist` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -526,7 +526,7 @@ CREATE TABLE `uptime` (
   `starttime` int(10) unsigned NOT NULL DEFAULT '0',
   `uptime` int(10) unsigned NOT NULL DEFAULT '0',
   `maxplayers` smallint(5) unsigned NOT NULL DEFAULT '0',
-  `revision` varchar(255) NOT NULL DEFAULT 'JadeCore 3.3.5',
+  `revision` varchar(255) NOT NULL DEFAULT 'JadeCore',
   PRIMARY KEY (`realmid`,`starttime`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Uptime system';
 /*!40101 SET character_set_client = @saved_cs_client */;

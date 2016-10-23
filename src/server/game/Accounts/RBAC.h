@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2008-2016 TrinityCore <http://www.trinitycore.org/>
+ * Copyright (C) 2013-2016 JadeCore <https://www.jadecore.tk/>
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -750,7 +750,11 @@ enum RBACPermissions
     RBAC_PERM_COMMAND_RELOAD_QUEST_GREETING                  = 843, // not on 3.3.5a
     RBAC_PERM_COMMAND_DEBUG_SEND_PLAYSCENE                   = 844, // not on 3.3.5a
 
-    // custom permissions 1000+
+	// custom permissions 1000+
+    RBAC_PERM_COMMAND_CUSTOM_VIP                             = 1001,
+	RBAC_PERM_COMMAND_BUFF									 = 1002,
+	RBAC_PERM_COMMAND_FAKE									 = 1003,
+	RBAC_PERM_COMMAND_CUSTOM_STAFF							 = 1004,
     RBAC_PERM_MAX
 };
 

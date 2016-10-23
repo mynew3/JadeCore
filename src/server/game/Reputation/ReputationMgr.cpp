@@ -1,6 +1,5 @@
 /*
- * Copyright (C) 2008-2016 TrinityCore <http://www.trinitycore.org/>
- * Copyright (C) 2005-2009 MaNGOS <http://getmangos.com/>
+ * Copyright (C) 2013-2016 JadeCore <https://www.jadecore.tk/>
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -25,6 +24,7 @@
 #include "ObjectMgr.h"
 #include "ScriptMgr.h"
 #include "WorldSession.h"
+#include "VipSystem.h"
 
 const int32 ReputationMgr::PointsInRank[MAX_REPUTATION_RANK] = {36000, 3000, 3000, 3000, 6000, 12000, 21000, 1000};
 
@@ -367,6 +367,7 @@ bool ReputationMgr::SetOneFactionReputation(FactionEntry const* factionEntry, in
         {
             // int32 *= float cause one point loss?
             standing = int32(floor((float)standing * sWorld->getRate(RATE_REPUTATION_GAIN) + 0.5f));
+            sVipSystem->VipFill(_player->GetSession()->GetSecurity(), TYPE_RATE_REPUTATION, standing);
             standing += itr->second.Standing + BaseRep;
         }
 

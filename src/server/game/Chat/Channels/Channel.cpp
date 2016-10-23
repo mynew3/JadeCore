@@ -1,6 +1,5 @@
 /*
- * Copyright (C) 2008-2016 TrinityCore <http://www.trinitycore.org/>
- * Copyright (C) 2005-2009 MaNGOS <http://getmangos.com/>
+ * Copyright (C) 2013-2016 JadeCore <https://www.jadecore.tk/>
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -54,6 +53,7 @@ Channel::Channel(uint32 channelId, uint32 team /*= 0*/, AreaTableEntry const* zo
     else                                                            // for all other channels
         _channelFlags |= CHANNEL_FLAG_NOT_LFG;
 }
+
 
 Channel::Channel(std::string const& name, uint32 team /*= 0*/) :
     _announceEnabled(true),
@@ -748,6 +748,7 @@ void Channel::Say(ObjectGuid guid, std::string const& what, uint32 lang) const
     };
 
     SendToAll(builder, !info.IsModerator() ? guid : ObjectGuid::Empty);
+
 }
 
 void Channel::Invite(Player const* player, std::string const& newname)

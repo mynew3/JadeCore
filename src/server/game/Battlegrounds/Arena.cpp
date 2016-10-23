@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2008-2016 TrinityCore <http://www.trinitycore.org/>
+ * Copyright (C) 2013-2016 JadeCore <https://www.jadecore.tk/>
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -40,9 +40,9 @@ Arena::Arena()
 void Arena::AddPlayer(Player* player)
 {
     Battleground::AddPlayer(player);
-    PlayerScores[player->GetGUID().GetCounter()] = new ArenaScore(player->GetGUID(), player->GetBGTeam());
+    PlayerScores[player->GetGUID().GetCounter()] = new ArenaScore(player->GetGUID(), player->GetTeam());
 
-    if (player->GetBGTeam() == ALLIANCE)        // gold
+    if (player->GetTeam() == ALLIANCE)       // gold
     {
         if (player->GetTeam() == HORDE)
             player->CastSpell(player, SPELL_HORDE_GOLD_FLAG, true);

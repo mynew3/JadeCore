@@ -1,6 +1,5 @@
 /*
- * Copyright (C) 2008-2016 TrinityCore <http://www.trinitycore.org/>
- * Copyright (C) 2005-2009 MaNGOS <http://getmangos.com/>
+ * Copyright (C) 2013-2016 JadeCore <https://www.jadecore.tk/>
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -45,7 +44,7 @@ void WorldSession::SendNameQueryOpcode(ObjectGuid guid)
     data << uint8(0);                               // name known
     data << nameData->Name;                         // played name
     data << uint8(0);                               // realm name - only set for cross realm interaction (such as Battlegrounds)
-    data << uint8(nameData->Race);
+    data << uint8(player ? player->getRace() : nameData->Race);
     data << uint8(nameData->Sex);
     data << uint8(nameData->Class);
 
