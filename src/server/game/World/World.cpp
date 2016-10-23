@@ -67,7 +67,7 @@
 #include "WeatherMgr.h"
 #include "WorldSession.h"
 #include "M2Stores.h"
-#include "../../scripts/Custom/npc_auto_team.h"
+//#include "../../scripts/Custom/npc_auto_team.h"
 
 TC_GAME_API std::atomic<bool> World::m_stopEvent(false);
 TC_GAME_API uint8 World::m_ExitCode = SHUTDOWN_EXIT_CODE;
