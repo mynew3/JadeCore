@@ -30,7 +30,7 @@ For more information about the project, visit our website at project [JadeCore O
 + Professionally Developed
 + All Class Combinations and Races are Fixed
 
-Required files
+##Required files
 
 [JadeCore_3.3.5_Dbc](https://mega.nz/#!Qw4W2BoI!AOYwZq2VzMDukokB0QrrMnJGbi3ZAy8ybMy6C7csx9E)
 
